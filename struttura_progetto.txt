@@ -1,0 +1,16 @@
+SkillMarket/
+└── src/
+    └── main/
+        ├── java/
+        │   └── it/
+        │       └── unisa/
+        │           └── skillmarket/
+        │               ├── control/    <-- Qui andranno le Servlet (es. LoginServlet.java)
+        │               ├── dao/        <-- Qui andrà la logica DB (es. ProductDAO.java)
+        │               └── model/      <-- Qui andranno i JavaBean (es. ProductBean.java)
+        └── webapp/
+            ├── WEB-INF/
+            │   └── view/               <-- Qui andranno TUTTE le pagine JSP (protette)
+            ├── images/                 <-- Immagini statiche
+            ├── scripts/                <-- File JavaScript (.js) esterni
+            └── styles/                 <-- Fogli di stile CSS (.css) esterni
