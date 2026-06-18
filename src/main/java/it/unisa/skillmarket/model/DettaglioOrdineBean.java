@@ -1,0 +1,59 @@
+package it.unisa.skillmarket.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class DettaglioOrdineBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private int idOrdine;
+    private int idServizio;
+    private int quantita;
+    private BigDecimal prezzoAcquisto;
+
+    public DettaglioOrdineBean() {
+    }
+
+    public int getIdOrdine() {
+        return idOrdine;
+    }
+
+    public void setIdOrdine(int idOrdine) {
+        this.idOrdine = idOrdine;
+    }
+
+    public int getIdServizio() {
+        return idServizio;
+    }
+
+    public void setIdServizio(int idServizio) {
+        this.idServizio = idServizio;
+    }
+
+    public int getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
+    }
+
+    public BigDecimal getPrezzoAcquisto() {
+        return prezzoAcquisto;
+    }
+
+    public void setPrezzoAcquisto(BigDecimal prezzoAcquisto) {
+        this.prezzoAcquisto = prezzoAcquisto;
+    }
+
+    @Override
+    public String toString() {
+        return "DettaglioOrdineBean{" +
+                "idOrdine=" + idOrdine +
+                ", idServizio=" + idServizio +
+                ", quantita=" + quantita +
+                ", prezzoAcquisto=" + prezzoAcquisto +
+                '}';
+    }
+}
