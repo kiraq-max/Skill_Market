@@ -5,3 +5,6 @@ target/
 .project
 *.class
 /build/
+
+# Credenziali database — NON committare!
+src/main/resources/db.properties
