@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 /**
  * Servlet per la gestione del login utente.
- * GET  → Mostra il form di login (login.jsp).
+ * GET → Mostra il form di login (login.jsp).
  * POST → Autentica l'utente e crea la sessione.
  */
 @WebServlet("/login")
@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 
         // Validazione base
         if (email == null || email.trim().isEmpty() ||
-            password == null || password.trim().isEmpty()) {
+                password == null || password.trim().isEmpty()) {
 
             request.setAttribute("errore", "Inserisci email e password.");
             request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
@@ -96,7 +96,8 @@ public class LoginServlet extends HttpServlet {
             StringBuilder hexString = new StringBuilder();
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
+                if (hex.length() == 1)
+                    hexString.append('0');
                 hexString.append(hex);
             }
             return hexString.toString();
@@ -105,3 +106,10 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
+
+// "Questa Servlet gestisce il ciclo di vita dell'autenticazione. Via GET serve
+// il modulo JSP protetto nel WEB-INF. Via POST valida l'input, applica
+// l'hashing SHA-256 alla password per confrontarla col database tramite il DAO,
+// e se l'esito è positivo istanzia una HttpSession impostando un timeout di 30
+// minuti. Infine, smista l'utente sulla dashboard o sul catalogo a seconda del
+// suo Ruolo, usando una redirect per prevenire il reinvio del form."
