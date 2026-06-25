@@ -23,6 +23,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const PASSWORD_MIN_LENGTH = 8;
 
     // -------------------------------------------------------
+    // TOGGLE MOSTRA/NASCONDI PASSWORD
+    // -------------------------------------------------------
+
+    /**
+     * Inizializza un bottone toggle per mostrare/nascondere la password.
+     * Alterna il type dell'input tra "password" e "text" e aggiorna l'icona.
+     */
+    function setupPasswordToggle(toggleBtnId, inputId) {
+        const btn = document.getElementById(toggleBtnId);
+        const input = document.getElementById(inputId);
+        if (!btn || !input) return;
+
+        btn.addEventListener('click', function () {
+            const isHidden = input.type === 'password';
+            input.type = isHidden ? 'text' : 'password';
+            // 👁 occhio aperto = password visibile, 👁‍🗨 occhio con bolla = password nascosta
+            btn.textContent = isHidden ? '\u{1F441}\u{200D}\u{1F5E8}' : '\u{1F441}';
+            btn.setAttribute('aria-label', isHidden ? 'Nascondi password' : 'Mostra password');
+            btn.setAttribute('title', isHidden ? 'Nascondi password' : 'Mostra password');
+        });
+    }
+
+    setupPasswordToggle('togglePassword', 'password');
+    setupPasswordToggle('toggleConfermaPassword', 'confermaPassword');
+
+    // -------------------------------------------------------
     // UTILITY: Mostra/Nascondi errore su un campo
     // -------------------------------------------------------
 

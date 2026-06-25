@@ -267,6 +267,44 @@ body::before {
     box-shadow: 0 0 0 3px rgba(123, 104, 238, 0.15);
 }
 
+/* ============================================
+   PASSWORD TOGGLE (Mostra/Nascondi password)
+   ============================================ */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 3rem; /* Spazio per il bottone */
+}
+
+.btn-toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.3rem;
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-toggle-password:hover {
+    color: var(--primary-light);
+}
+
+.btn-toggle-password:focus {
+    outline: none;
+    color: var(--primary);
+}
+
 /* Stato errore del campo */
 .form-group input.input-error {
     border-color: var(--error-border);

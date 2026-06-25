@@ -49,9 +49,13 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password"
-                           placeholder="La tua password"
-                           autocomplete="current-password">
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password"
+                               placeholder="La tua password"
+                               autocomplete="current-password">
+                        <button type="button" class="btn-toggle-password" id="togglePassword"
+                                aria-label="Mostra password" title="Mostra password">&#128065;</button>
+                    </div>
                     <span class="field-error" id="password-error"></span>
                 </div>
 

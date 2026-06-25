@@ -60,17 +60,25 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password"
-                           placeholder="Minimo 8 caratteri"
-                           autocomplete="new-password">
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password"
+                               placeholder="Minimo 8 caratteri"
+                               autocomplete="new-password">
+                        <button type="button" class="btn-toggle-password" id="togglePassword"
+                                aria-label="Mostra password" title="Mostra password">&#128065;</button>
+                    </div>
                     <span class="field-error" id="password-error"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="confermaPassword">Conferma Password</label>
-                    <input type="password" id="confermaPassword" name="confermaPassword"
-                           placeholder="Ripeti la password"
-                           autocomplete="new-password">
+                    <div class="password-wrapper">
+                        <input type="password" id="confermaPassword" name="confermaPassword"
+                               placeholder="Ripeti la password"
+                               autocomplete="new-password">
+                        <button type="button" class="btn-toggle-password" id="toggleConfermaPassword"
+                                aria-label="Mostra conferma password" title="Mostra password">&#128065;</button>
+                    </div>
                     <span class="field-error" id="confermaPassword-error"></span>
                 </div>
 
