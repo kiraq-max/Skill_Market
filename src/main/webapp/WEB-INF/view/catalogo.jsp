@@ -151,7 +151,7 @@
                                 <span class="service-price">
                                     &euro; <%= s.getPrezzoCorrente() %>
                                 </span>
-                                <a href="${pageContext.request.contextPath}/dettaglio?id=<%= s.getIdServizio() %>"
+                                <a href="${pageContext.request.contextPath}/servizio?id=<%= s.getIdServizio() %>"
                                    class="btn btn-card" id="btnDetail_<%= s.getIdServizio() %>">
                                     Dettagli
                                 </a>
