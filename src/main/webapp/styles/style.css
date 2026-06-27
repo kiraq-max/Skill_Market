@@ -798,6 +798,321 @@ body::before {
 }
 
 /* ============================================
+   DETTAGLIO SERVIZIO — Layout
+   ============================================ */
+.detail-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-layout {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem;
+    flex: 1;
+    width: 100%;
+}
+
+/* ---- Breadcrumb ---- */
+.detail-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.75rem;
+    font-size: 0.85rem;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.detail-breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.detail-breadcrumb a:hover {
+    color: var(--primary-light);
+    text-decoration: none;
+}
+
+.breadcrumb-separator {
+    color: var(--text-muted);
+    opacity: 0.4;
+    font-size: 0.7rem;
+}
+
+.breadcrumb-current {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ---- Grid a 2 colonne ---- */
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    animation: fadeSlideUp 0.5s ease-out;
+}
+
+/* ---- Immagine ---- */
+.detail-image-col {
+    display: flex;
+    align-items: flex-start;
+}
+
+.detail-image-wrapper {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.detail-image-wrapper img {
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+    max-height: 450px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.detail-image-wrapper:hover img {
+    transform: scale(1.04);
+}
+
+/* ---- Info colonna destra ---- */
+.detail-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Badge categoria */
+.detail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(123, 104, 238, 0.12);
+    border: 1px solid rgba(123, 104, 238, 0.25);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    width: fit-content;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Titolo */
+.detail-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    margin-bottom: 0.85rem;
+}
+
+/* Prezzo */
+.detail-price {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+/* Descrizione */
+.detail-description {
+    background: var(--bg-surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.detail-description h2 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-label);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.65rem;
+}
+
+.detail-description p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Meta info (venditore, ID) */
+.detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.detail-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.85rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-divider);
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.detail-meta-icon {
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* ---- Azioni (Aggiungi al carrello, Torna) ---- */
+.detail-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detail-actions form {
+    display: contents;
+}
+
+.btn-detail-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.btn-detail-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-detail-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px var(--primary-glow);
+}
+
+.btn-detail-primary:hover::before {
+    left: 100%;
+}
+
+.btn-detail-primary:active {
+    transform: translateY(0);
+}
+
+.btn-detail-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: var(--success-text);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-detail-secondary:hover {
+    background: rgba(34, 197, 94, 0.2);
+    text-decoration: none;
+    color: var(--success-text);
+}
+
+.btn-detail-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-detail-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary-light);
+    background: rgba(123, 104, 238, 0.06);
+    text-decoration: none;
+}
+
+/* ============================================
+   RESPONSIVE — DETTAGLIO SERVIZIO
+   ============================================ */
+@media (max-width: 768px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .detail-layout {
+        padding: 1.25rem;
+    }
+
+    .detail-title {
+        font-size: 1.45rem;
+    }
+
+    .detail-price {
+        font-size: 1.35rem;
+    }
+
+    .detail-image-wrapper img {
+        min-height: 200px;
+        max-height: 320px;
+    }
+}
+
+/* ============================================
    SITE FOOTER
    ============================================ */
 .site-footer {
