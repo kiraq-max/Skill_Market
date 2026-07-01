@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DettaglioOrdineDAO {
 
-    private static final String TABLE_NAME = "dettaglio_ordine";
+    private static final String TABLE_NAME = "Dettaglio_Ordine";
 
     // Query SQL
     // Salva una singola riga d'ordine

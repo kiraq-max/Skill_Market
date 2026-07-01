@@ -1,7 +1,7 @@
 package it.unisa.skillmarket.dao;
 
 import it.unisa.skillmarket.model.ServizioBean;
-import it.unisa.skillmarket.dao.ConPool; 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import java.util.List;
 public class ServizioDAO {
 
     // Query SQL costanti (nomi tabelle e colonne ipotizzati in base al Bean)
-    private static final String TABLE_NAME = "servizio";
+    private static final String TABLE_NAME = "Servizio";
     
     // Recupera solo i servizi attivi (soft-delete)
     private static final String RETRIEVE_ALL = "SELECT * FROM " + TABLE_NAME + " WHERE attivo = true";

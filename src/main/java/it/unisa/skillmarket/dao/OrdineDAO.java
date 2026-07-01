@@ -12,7 +12,7 @@ import java.util.List;
 
 public class OrdineDAO {
 
-    private static final String TABLE_NAME = "ordine";
+    private static final String TABLE_NAME = "Ordine";
 
     // Query SQL costanti
     private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (id_cliente, data_ordine, totale_ordine, indirizzo_spedizione, dati_pagamento) VALUES (?, ?, ?, ?, ?)";

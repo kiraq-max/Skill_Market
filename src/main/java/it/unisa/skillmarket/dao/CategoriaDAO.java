@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CategoriaDAO {
 
-    private static final String TABLE_NAME = "categoria";
+    private static final String TABLE_NAME = "Categoria";
 
     // Query SQL costanti
     private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (nome, descrizione) VALUES (?, ?)";
