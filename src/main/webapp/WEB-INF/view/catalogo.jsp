@@ -123,7 +123,7 @@
             <% if (servizi != null && !servizi.isEmpty()) { %>
                 <div class="services-grid" id="servicesGrid">
                     <% for (ServizioBean s : servizi) { %>
-                        <article class="service-card" id="service_<%= s.getIdServizio() %>">
+                        <a href="${pageContext.request.contextPath}/servizio?id=<%= s.getIdServizio() %>" class="service-card" id="service_<%= s.getIdServizio() %>">
 
                             <!-- Immagine -->
                             <div class="service-card-img">
@@ -151,13 +151,12 @@
                                 <span class="service-price">
                                     &euro; <%= s.getPrezzoCorrente() %>
                                 </span>
-                                <a href="${pageContext.request.contextPath}/servizio?id=<%= s.getIdServizio() %>"
-                                   class="btn btn-card" id="btnDetail_<%= s.getIdServizio() %>">
+                                <span class="btn btn-card" id="btnDetail_<%= s.getIdServizio() %>">
                                     Dettagli
-                                </a>
+                                </span>
                             </div>
 
-                        </article>
+                        </a>
                     <% } %>
                 </div>
 
