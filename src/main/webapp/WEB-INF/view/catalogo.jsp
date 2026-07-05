@@ -48,6 +48,9 @@
                 </a>
 
                 <% if (utente != null) { %>
+                    <a href="${pageContext.request.contextPath}/area-personale" class="nav-link" id="navAreaPersonale">
+                        &#128100; Area Personale
+                    </a>
                     <span class="nav-user" id="navUser">
                         &#128100; <%= utente.getNome() %>
                     </span>

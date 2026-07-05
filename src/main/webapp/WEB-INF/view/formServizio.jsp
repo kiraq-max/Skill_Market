@@ -60,7 +60,7 @@
         <div class="form-container">
             <h1 class="form-title"><%= isEdit ? "Modifica Servizio #" + servizio.getIdServizio() : "Aggiungi Nuovo Servizio" %></h1>
             
-            <form action="${pageContext.request.contextPath}/admin/gestione" method="post">
+            <form action="${pageContext.request.contextPath}/admin/gestione" method="post" id="formServizio" data-mode="<%= isEdit ? "edit" : "add" %>">
                 <input type="hidden" name="action" value="<%= isEdit ? "update" : "insert" %>">
                 <% if(isEdit) { %>
                     <input type="hidden" name="id" value="<%= servizio.getIdServizio() %>">
@@ -69,11 +69,13 @@
                 <div class="form-group">
                     <label for="titolo">Titolo del Servizio</label>
                     <input type="text" id="titolo" name="titolo" value="<%= isEdit ? servizio.getTitolo() : "" %>" required>
+                    <span class="error-message" id="titolo-error"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="prezzo">Prezzo (&euro;)</label>
                     <input type="number" id="prezzo" name="prezzo" step="0.01" min="1" value="<%= isEdit ? servizio.getPrezzoCorrente() : "" %>" required>
+                    <span class="error-message" id="prezzo-error"></span>
                 </div>
 
                 <div class="form-group">
@@ -88,16 +90,19 @@
                         <%  }
                         } %>
                     </select>
+                    <span class="error-message" id="categoria-error"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="immagine">Immagine (Nome File Es. 'design.jpg')</label>
                     <input type="text" id="immagine" name="immagine" value="<%= isEdit && servizio.getImmaginePath() != null ? servizio.getImmaginePath() : "" %>" placeholder="Lascia vuoto per immagine default">
+                    <span class="error-message" id="immagine-error"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="descrizione">Descrizione</label>
                     <textarea id="descrizione" name="descrizione" required><%= isEdit ? servizio.getDescrizione() : "" %></textarea>
+                    <span class="error-message" id="descrizione-error"></span>
                 </div>
 
                 <div style="display: flex; gap: 1em; margin-top: 2em;">
@@ -112,5 +117,7 @@
     <footer class="site-footer">
         &copy; 2026 SkillMarket - Progetto Universitario TSW
     </footer>
+
+    <script src="${pageContext.request.contextPath}/scripts/formServizio.js"></script>
 </body>
 </html>

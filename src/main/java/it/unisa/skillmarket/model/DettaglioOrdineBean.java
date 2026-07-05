@@ -12,6 +12,13 @@ public class DettaglioOrdineBean implements Serializable {
     private int quantita;
     private BigDecimal prezzoAcquisto;
 
+    /**
+     * Campo transiente: non fa parte dello schema DB.
+     * Viene popolato dalla AreaPersonaleServlet per portare i dati del Servizio
+     * direttamente alla view, evitando query aggiuntive dalla JSP.
+     */
+    private transient ServizioBean servizio;
+
     public DettaglioOrdineBean() {
     }
 
@@ -45,6 +52,14 @@ public class DettaglioOrdineBean implements Serializable {
 
     public void setPrezzoAcquisto(BigDecimal prezzoAcquisto) {
         this.prezzoAcquisto = prezzoAcquisto;
+    }
+
+    public ServizioBean getServizio() {
+        return servizio;
+    }
+
+    public void setServizio(ServizioBean servizio) {
+        this.servizio = servizio;
     }
 
     @Override
