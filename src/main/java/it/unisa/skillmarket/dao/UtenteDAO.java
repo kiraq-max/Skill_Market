@@ -72,4 +72,29 @@ public class UtenteDAO {
         }
         return utente;
     }
+
+    /**
+     * Recupera un utente tramite il suo ID (usato dalla vista admin ordini
+     * per mostrare nome e cognome del cliente accanto all'ordine).
+     */
+    public synchronized UtenteBean doRetrieveById(int idUtente) throws SQLException {
+        String query = "SELECT * FROM Utente WHERE id_utente = ?";
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, idUtente);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    UtenteBean utente = new UtenteBean();
+                    utente.setIdUtente(rs.getInt("id_utente"));
+                    utente.setNome(rs.getString("nome"));
+                    utente.setCognome(rs.getString("cognome"));
+                    utente.setEmail(rs.getString("email"));
+                    utente.setPasswordHash(rs.getString("password_hash"));
+                    utente.setRuolo(rs.getString("ruolo"));
+                    return utente;
+                }
+            }
+        }
+        return null;
+    }
 }
