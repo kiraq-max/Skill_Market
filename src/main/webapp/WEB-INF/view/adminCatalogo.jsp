@@ -44,7 +44,8 @@
             </a>
             <div class="navbar-links">
                 <a href="${pageContext.request.contextPath}/catalogo" class="nav-link">&#128218; Catalogo</a>
-                <a href="${pageContext.request.contextPath}/admin/dashboard" class="nav-link active">&#9881; Admin</a>
+                <a href="${pageContext.request.contextPath}/admin/dashboard" class="nav-link active">&#128230; Servizi</a>
+                <a href="${pageContext.request.contextPath}/admin/ordini" class="nav-link">&#128196; Ordini</a>
             </div>
             <div class="navbar-user">
                 <span class="user-greeting">&#128100; Ciao, <%= utente.getNome() %></span>
