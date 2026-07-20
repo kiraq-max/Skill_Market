@@ -13,6 +13,8 @@
 
     <!-- CSS esterno (specifica: separare CSS dal JSP, cartella styles/) -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css">
+    <!-- Meta tag usato da catalogo.js per costruire gli URL AJAX -->
+    <meta id="contextPathMeta" content="${pageContext.request.contextPath}">
 </head>
 <body class="catalog-page">
 
@@ -183,6 +185,9 @@
     <footer class="site-footer" id="siteFooter">
         <p>&copy; 2026 SkillMarket — Progetto TSW, Università degli Studi di Salerno</p>
     </footer>
+
+    <!-- JS esterno (specifica: separare JS dal JSP, cartella scripts/) -->
+    <script src="${pageContext.request.contextPath}/scripts/catalogo.js"></script>
 
 </body>
 </html>

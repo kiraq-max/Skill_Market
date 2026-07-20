@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,13 @@ public class OrdineDAO {
     private static final String RETRIEVE_BY_ID = "SELECT * FROM " + TABLE_NAME + " WHERE id_ordine = ?";
     private static final String RETRIEVE_BY_CLIENTE = "SELECT * FROM " + TABLE_NAME + " WHERE id_cliente = ? ORDER BY data_ordine DESC";
     private static final String RETRIEVE_ALL = "SELECT * FROM " + TABLE_NAME + " ORDER BY data_ordine DESC";
+    // Filtra per intervallo di date (da dataInizio incluso a dataFine incluso)
+    private static final String RETRIEVE_BY_DATE_RANGE =
+        "SELECT * FROM " + TABLE_NAME + " WHERE data_ordine BETWEEN ? AND ? ORDER BY data_ordine DESC";
+    // Filtra per email cliente tramite JOIN con la tabella Utente
+    private static final String RETRIEVE_BY_CLIENTE_EMAIL =
+        "SELECT o.* FROM " + TABLE_NAME + " o JOIN Utente u ON o.id_cliente = u.id_utente " +
+        "WHERE u.email = ? ORDER BY o.data_ordine DESC";
 
     /**
      * Salva un nuovo Ordine nel database e restituisce l'ID generato automaticamente.
@@ -101,6 +109,46 @@ public class OrdineDAO {
 
             while (rs.next()) {
                 ordini.add(extractOrdineFromResultSet(rs));
+            }
+        }
+        return ordini;
+    }
+
+    /**
+     * Recupera gli ordini effettuati in un intervallo di date (estremi inclusi).
+     * Usato dal pannello amministratore per il filtro per data.
+     *
+     * @param dataInizio Timestamp di inizio intervallo (00:00:00 del giorno)
+     * @param dataFine   Timestamp di fine intervallo (23:59:59 del giorno)
+     */
+    public List<OrdineBean> doRetrieveByDateRange(Timestamp dataInizio, Timestamp dataFine) throws SQLException {
+        List<OrdineBean> ordini = new ArrayList<>();
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(RETRIEVE_BY_DATE_RANGE)) {
+            ps.setTimestamp(1, dataInizio);
+            ps.setTimestamp(2, dataFine);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ordini.add(extractOrdineFromResultSet(rs));
+                }
+            }
+        }
+        return ordini;
+    }
+
+    /**
+     * Recupera tutti gli ordini effettuati da un cliente identificato dalla sua email.
+     * Usato dal pannello amministratore per il filtro per cliente.
+     */
+    public List<OrdineBean> doRetrieveByClienteEmail(String email) throws SQLException {
+        List<OrdineBean> ordini = new ArrayList<>();
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(RETRIEVE_BY_CLIENTE_EMAIL)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ordini.add(extractOrdineFromResultSet(rs));
+                }
             }
         }
         return ordini;
