@@ -24,6 +24,11 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         if (session != null) {
+            // Rimuovo esplicitamente il token di sessione prima dell'invalidazione.
+            // Questo rende il ciclo di vita del token chiaro e tracciabile.
+            session.removeAttribute("sessionToken");
+            session.removeAttribute("utente");
+            session.removeAttribute("carrello");
             session.invalidate();
         }
 

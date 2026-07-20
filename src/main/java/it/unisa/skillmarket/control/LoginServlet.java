@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.UUID;
 
 /**
  * Servlet per la gestione del login utente.
@@ -63,6 +64,13 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("utente", utente);
                 session.setMaxInactiveInterval(30 * 60); // 30 minuti di timeout
+
+                // Genero un token univoco e lo salvo nella sessione.
+                // Requisito non funzionale TSW: "token nella sessione per il controllo degli accessi".
+                // Il filtro AccessControlFilter verifica la presenza di questo token
+                // su tutte le URL protette (/admin/*, /area-personale, /checkout).
+                String sessionToken = UUID.randomUUID().toString();
+                session.setAttribute("sessionToken", sessionToken);
 
                 // Redirect basato sul ruolo
                 switch (utente.getRuolo()) {
